@@ -2,14 +2,65 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #FFFFFF;
+
+  --primary: #CAE366;
+  --primary-variant: #8AAA06;
+  --muted: #A5A8BE;
+  --muted-foreground: #71717B;
+
+  --font-delight-thin: 'Delight Thin';
+  --font-delight-extralight: 'Delight Extra Light';
+  --font-delight-light: 'Delight Light';
+  --font-delight-regular: 'Delight Regular';
+  --font-delight-medium: 'Delight Medium';
+  --font-delight-semibold: 'Delight Semi Bold';
+  --font-delight-bold: 'Delight Bold';
+  --font-delight-extrabold: 'Delight Extra Bold';
+  --font-delight-black: 'Delight Black';
+
+  /* Suisse Intl font variables */
+  --font-suisse-intl-light: 'Suisse Intl Light';
+  --font-suisse-intl-regular: 'Suisse Intl Regular';
+  --font-suisse-intl-medium: 'Suisse Intl Medium';
+  --font-suisse-intl-semibold: 'Suisse Intl Semi Bold';
+  --font-suisse-intl-bold: 'Suisse Intl Bold';
+
+  /* Default font */
+  --font-body: var(--font-delight-regular);
+  --font-heading: var(--font-delight-bold);
+  --font-mono: var(--font-geist-mono-regular);
+  --font-instrumetal: var(--font-instrumetal);
 }
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-variant: var(--primary-variant);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-instrumetal: var(--font-instrumetal);
+
+  --font-delight-thin: var(--font-delight-thin);
+  --font-delight-extralight: var(--font-delight-extralight);
+  --font-delight-light: var(--font-delight-light);
+  --font-delight-regular: var(--font-delight-regular);
+  --font-delight-medium: var(--font-delight-medium);
+  --font-delight-semibold: var(--font-delight-semibold);
+  --font-delight-bold: var(--font-delight-bold);
+  --font-delight-extrabold: var(--font-delight-extrabold);
+  --font-delight-black: var(--font-delight-black);
+
+  --font-suisse-intl-light: var(--font-suisse-intl-light);
+  --font-suisse-intl-regular: var(--font-suisse-intl-regular);
+  --font-suisse-intl-medium: var(--font-suisse-intl-medium);
+  --font-suisse-intl-semibold: var(--font-suisse-intl-semibold);
+  --font-suisse-intl-bold: var(--font-suisse-intl-bold);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +70,80 @@
   }
 }
 
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+}
+
+/* Base styles with prefix */
+.body {
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+}
+
+.heading {
+  font-family: var(--font-heading), system-ui, -apple-system, sans-serif;
+}
+
+.mono {
+  /* font-family: var(--font-mono), monospace; */
+}
+
+/* Delight font utilities with prefix */
+.font-delight-thin {
+  font-family: var(--font-delight-thin), sans-serif;
+}
+
+.font-delight-extralight {
+  font-family: var(--font-delight-extralight), sans-serif;
+}
+
+.font-delight-light {
+  font-family: var(--font-delight-light), sans-serif;
+}
+
+.font-delight-regular {
+  font-family: var(--font-delight-regular), sans-serif;
+}
+
+.font-delight-medium {
+  font-family: var(--font-delight-medium), sans-serif;
+}
+
+.font-delight-semibold {
+  font-family: var(--font-delight-semibold), sans-serif;
+}
+
+.font-delight-bold {
+  font-family: var(--font-delight-bold), sans-serif;
+}
+
+.font-delight-extrabold {
+  font-family: var(--font-delight-extrabold), sans-serif;
+}
+
+.font-delight-black {
+  font-family: var(--font-delight-black), sans-serif;
+}
+
+/* Suisse Intl font utilities with prefix */
+.font-suisse-intl-light {
+  font-family: var(--font-suisse-intl-light), sans-serif;
+}
+
+.font-suisse-intl-regular {
+  font-family: var(--font-suisse-intl-regular), sans-serif;
+}
+
+.font-suisse-intl-medium {
+  font-family: var(--font-suisse-intl-medium), sans-serif;
+}
+
+.font-suisse-intl-semibold {
+  font-family: var(--font-suisse-intl-semibold), sans-serif;
+}
+
+.font-suisse-intl-bold {
+  font-family: var(--font-suisse-intl-bold), sans-serif;
 }
