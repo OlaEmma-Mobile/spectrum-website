@@ -107,7 +107,7 @@ export function EpcProcessSection() {
                         </h3>
                         <p className="text-[#3A3F4A] text-base md:text-[17px] leading-[1.6]">
                             <SuisseIntlText weight="regular">
-                                We'll contact you to schedule your order. With fast turnaround times your certificate will be ready in no time.
+                                We&apos;ll contact you to schedule your order. With fast turnaround times your certificate will be ready in no time.
                             </SuisseIntlText>
                         </p>
                     </motion.div>

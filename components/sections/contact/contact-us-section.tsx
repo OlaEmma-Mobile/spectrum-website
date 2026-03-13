@@ -1,11 +1,48 @@
 "use client";
 
-import { Mail, Phone, CalendarDays, MapPin } from "lucide-react";
+import { FormEvent, useState } from "react";
+import { Mail, Phone, CalendarDays, MapPin, ChevronDown } from "lucide-react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaDribbble } from "react-icons/fa";
 import { DelightText, SuisseIntlText } from "@/components/fonts";
-import { ChevronDown } from "lucide-react";
 
 export function ContactUsSection() {
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setStatus("submitting");
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const fields = Object.fromEntries(
+            Array.from(formData.entries()).map(([key, value]) => [key, String(value)])
+        );
+        const searchParams = new URLSearchParams(window.location.search);
+        const trackingKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"];
+        const tracking = trackingKeys.reduce<Record<string, string>>((acc, key) => {
+            const value = searchParams.get(key);
+            if (value) acc[key] = value;
+            return acc;
+        }, {});
+
+        try {
+            const response = await fetch("/api/enquiries", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    formType: "contact-us",
+                    page: window.location.pathname,
+                    fields,
+                    tracking,
+                }),
+            });
+            if (!response.ok) throw new Error("Unable to submit");
+            form.reset();
+            setStatus("success");
+        } catch {
+            setStatus("error");
+        }
+    };
+
     return (
         <section className="bg-white py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
             <div className="container mx-auto">
@@ -29,7 +66,7 @@ export function ContactUsSection() {
                                             EMAIL US
                                         </h3>
                                         <p className="text-white text-[15px] sm:text-base">
-                                            <SuisseIntlText weight="regular">info@spectrumservice.co.uk</SuisseIntlText>
+                                            <SuisseIntlText weight="regular">info@spectrumpservices.co.uk</SuisseIntlText>
                                         </p>
                                     </div>
                                 </div>
@@ -44,7 +81,7 @@ export function ContactUsSection() {
                                             PHONE NUMBER
                                         </h3>
                                         <p className="text-white text-[15px] sm:text-base">
-                                            <SuisseIntlText weight="regular">+449 000 111 222</SuisseIntlText>
+                                            <SuisseIntlText weight="regular">+44 7946274462</SuisseIntlText>
                                         </p>
                                     </div>
                                 </div>
@@ -76,8 +113,7 @@ export function ContactUsSection() {
                                         </h3>
                                         <div className="text-white text-[15px] sm:text-base leading-relaxed -mt-6">
                                             <SuisseIntlText weight="regular">
-                                                Buckingham Palace, by<br />
-                                                Prince Charles, Castle
+                                                United Kingdom
                                             </SuisseIntlText>
                                         </div>
                                     </div>
@@ -93,19 +129,19 @@ export function ContactUsSection() {
                             </span>
 
                             <div className="flex gap-3 pt-4">
-                                <a href="#" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-white/10 transition-colors">
+                                <a href="https://www.spectrumpservices.co.uk" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-primary hover:text-black transition-colors">
                                     <FaFacebookF className="w-[18px] h-[18px]" />
                                 </a>
-                                <a href="#" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#CAE366] text-black hover:bg-[#b8d14d] transition-colors">
+                                <a href="https://www.spectrumpservices.co.uk" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-primary hover:text-black transition-colors">
                                     <FaTwitter className="w-[18px] h-[18px]" />
                                 </a>
-                                <a href="#" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-white/10 transition-colors">
+                                <a href="https://www.spectrumpservices.co.uk" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-primary hover:text-black transition-colors">
                                     <FaLinkedinIn className="w-[18px] h-[18px]" />
                                 </a>
-                                <a href="#" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-white/10 transition-colors">
+                                <a href="https://www.spectrumpservices.co.uk" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-primary hover:text-black transition-colors">
                                     <FaInstagram className="w-[18px] h-[18px]" />
                                 </a>
-                                <a href="#" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-white/10 transition-colors">
+                                <a href="https://www.spectrumpservices.co.uk" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#18181B] text-white hover:bg-primary hover:text-black transition-colors">
                                     <FaDribbble className="w-[18px] h-[18px]" />
                                 </a>
                             </div>
@@ -114,7 +150,7 @@ export function ContactUsSection() {
 
                     {/* Right Column - Form */}
                     <div className="lg:w-[55%] p-8 md:p-14 lg:p-16">
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={handleSubmit}>
 
                             {/* Name & Email Row */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -125,8 +161,9 @@ export function ContactUsSection() {
                                     <input
                                         type="text"
                                         id="name"
+                                        name="name"
                                         placeholder="Full name"
-                                        className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400"
+                                        className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-700 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -136,8 +173,9 @@ export function ContactUsSection() {
                                     <input
                                         type="email"
                                         id="email"
+                                        name="email"
                                         placeholder="Email address"
-                                        className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400"
+                                        className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-700 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400"
                                     />
                                 </div>
                             </div>
@@ -150,8 +188,9 @@ export function ContactUsSection() {
                                 <input
                                     type="text"
                                     id="subject"
+                                    name="subject"
                                     placeholder="Subject"
-                                    className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400"
+                                    className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400 text-gray-700"
                                 />
                             </div>
 
@@ -161,8 +200,8 @@ export function ContactUsSection() {
                                     Is the enquiry regarding a new instruction or an existing one?
                                 </label>
                                 <div className="relative">
-                                    <select className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] text-gray-500 appearance-none bg-white">
-                                        <option value="" disabled selected>Select an option</option>
+                                    <select name="enquiryType" defaultValue="" className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] text-gray-500 appearance-none bg-white">
+                                        <option value="" disabled>Select an option</option>
                                         <option value="new">New Instruction</option>
                                         <option value="existing">Existing Instruction</option>
                                     </select>
@@ -176,8 +215,8 @@ export function ContactUsSection() {
                                     Which services is required?
                                 </label>
                                 <div className="relative">
-                                    <select className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] text-gray-500 appearance-none bg-white">
-                                        <option value="" disabled selected>Select an option</option>
+                                    <select name="service" defaultValue="" className="w-full px-4 py-3.5 rounded-lg border border-gray-200 text-gray-700 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] text-gray-500 appearance-none bg-white">
+                                        <option value="" disabled>Select an option</option>
                                         <option value="building_survey">Building Survey</option>
                                         <option value="valuation">Valuation</option>
                                         <option value="project_management">Project Management</option>
@@ -192,8 +231,8 @@ export function ContactUsSection() {
                                     How did you know about Project & Co?
                                 </label>
                                 <div className="relative">
-                                    <select className="w-full px-4 py-3.5 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] text-gray-500 appearance-none bg-white">
-                                        <option value="" disabled selected>Select an option</option>
+                                    <select name="source" defaultValue="" className="w-full px-4 py-3.5 rounded-lg border text-gray-700 border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] text-gray-500 appearance-none bg-white">
+                                        <option value="" disabled>Select an option</option>
                                         <option value="search">Search Engine</option>
                                         <option value="social">Social Media</option>
                                         <option value="referral">Referral</option>
@@ -209,17 +248,24 @@ export function ContactUsSection() {
                                 </label>
                                 <textarea
                                     id="message"
+                                    name="message"
                                     rows={4}
                                     placeholder="Tell us about your project..."
-                                    className="w-full px-4 py-4 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400 resize-none"
+                                    className="w-full px-4 py-4 rounded-lg border border-gray-200 focus:outline-none text-gray-700 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all text-[15px] placeholder:text-gray-400 resize-none"
                                 ></textarea>
                             </div>
 
                             {/* Submit Button */}
                             <div className="pt-2">
-                                <button type="submit" className="w-full bg-[#0A0A0B] hover:bg-black text-white font-medium py-4 rounded-xl transition-colors text-[15px]">
-                                    <SuisseIntlText weight="medium">Send Message</SuisseIntlText>
+                                <button type="submit" className="w-full bg-[#0A0A0B] hover:bg-black text-white font-medium py-4 rounded-xl transition-colors text-[15px] disabled:opacity-70" disabled={status === "submitting"}>
+                                    <SuisseIntlText weight="medium">{status === "submitting" ? "Sending..." : "Send Message"}</SuisseIntlText>
                                 </button>
+                                {status === "success" && (
+                                    <p className="mt-3 text-sm text-green-700">Your enquiry has been received. We will contact you shortly.</p>
+                                )}
+                                {status === "error" && (
+                                    <p className="mt-3 text-sm text-red-600">We could not submit your enquiry. Please try again.</p>
+                                )}
                             </div>
                         </form>
                     </div>

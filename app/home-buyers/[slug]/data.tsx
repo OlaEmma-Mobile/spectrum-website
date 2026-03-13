@@ -80,7 +80,7 @@ export const surveysData: Record<string, SurveyData> = {
                                 <li className="flex items-start gap-3">
                                     <div className="w-[5px] h-[5px] rounded-full bg-[#646A7A] mt-2 shrink-0" />
                                     <span className="text-[#646A7A] text-[17px]">
-                                        <SuisseIntlText weight="regular">Homes that haven't been significantly extended, altered, or neglected</SuisseIntlText>
+                                        <SuisseIntlText weight="regular">Homes that haven&apos;t been significantly extended, altered, or neglected</SuisseIntlText>
                                     </span>
                                 </li>
                             </ul>
@@ -107,7 +107,7 @@ export const surveysData: Record<string, SurveyData> = {
                     content: (
                         <div className="pt-4 pb-2 text-[#646A7A] text-[17px]">
                             <SuisseIntlText weight="regular">
-                                You'll receive a clear, easy-to-read report using a simple 'traffic light' ratings system. We highlight urgent repairs, provide maintenance advice, and can optionally include an independent property valuation to ensure you are paying a fair market price.
+                                You&apos;ll receive a clear, easy-to-read report using a simple &apos;traffic light&apos; ratings system. We highlight urgent repairs, provide maintenance advice, and can optionally include an independent property valuation to ensure you are paying a fair market price.
                             </SuisseIntlText>
                         </div>
                     )
@@ -189,7 +189,7 @@ export const surveysData: Record<string, SurveyData> = {
                     content: (
                         <div className="pt-4 pb-2 text-[#646A7A] text-[17px]">
                             <SuisseIntlText weight="regular">
-                                You'll receive a comprehensive, detailed report with extensive supporting images and clear, jargon-free language. The report not only identifies defects but also provides a diagnosis and suggests necessary remedial actions to help you understand exactly what you are buying.
+                                You&apos;ll receive a comprehensive, detailed report with extensive supporting images and clear, jargon-free language. The report not only identifies defects but also provides a diagnosis and suggests necessary remedial actions to help you understand exactly what you are buying.
                             </SuisseIntlText>
                         </div>
                     )
@@ -200,7 +200,7 @@ export const surveysData: Record<string, SurveyData> = {
                     content: (
                         <div className="pt-4 pb-2 text-[#646A7A] text-[17px]">
                             <SuisseIntlText weight="regular">
-                                You'll receive a comprehensive, detailed report with extensive supporting images and clear, jargon-free language. The report not only identifies defects but also provides a diagnosis and suggests necessary remedial actions to help you understand exactly what you are buying.
+                                You&apos;ll receive a comprehensive, detailed report with extensive supporting images and clear, jargon-free language. The report not only identifies defects but also provides a diagnosis and suggests necessary remedial actions to help you understand exactly what you are buying.
                             </SuisseIntlText>
                         </div>
                     )

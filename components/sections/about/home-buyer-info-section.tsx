@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { DelightText, SuisseIntlText } from "@/components/fonts";
+import { SuisseIntlText } from "@/components/fonts";
 import { motion } from "framer-motion";
 
 export function HomeBuyerInfoSection() {
@@ -83,13 +83,11 @@ export function HomeBuyerInfoSection() {
                                 </SuisseIntlText>
                             </p>
 
-                            <Link href="/book-consultation">
-                                <button className="bg-primary text-[#0A0A0B] px-8 py-3 rounded-full flex items-center justify-center gap-2 group/btn transition-colors w-fit">
-                                    <SuisseIntlText weight="bold" className="text-sm font-bold tracking-wide">
-                                        GET STARTED
-                                    </SuisseIntlText>
-                                    <span className="text-xs transition-transform group-hover/btn:translate-x-1">▶</span>
-                                </button>
+                            <Link href="/contact-us" className="bg-primary text-[#0A0A0B] px-8 py-3 rounded-full inline-flex items-center justify-center gap-2 group/btn transition-colors w-fit">
+                                <SuisseIntlText weight="bold" className="text-sm font-bold tracking-wide">
+                                    GET STARTED
+                                </SuisseIntlText>
+                                <span className="text-xs transition-transform group-hover/btn:translate-x-1">▶</span>
                             </Link>
                         </div>
                     </div>

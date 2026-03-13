@@ -1,5 +1,6 @@
 import { DelightText, SuisseIntlText } from "@/components/fonts";
 import Image from "next/image";
+import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations/fade-in";
 
 const services = [
@@ -43,6 +44,11 @@ const services = [
         image: "/sections/services/service8.jpg",
         description: "Accurate reinstatement cost assessments and expert support for complex insurance claims.",
     },
+    {
+        title: "Stock Condition Surveys",
+        image: "/sections/services/service9.png",
+        description: "Data-driven insight into portfolio condition, compliance, and lifecycle performance for smarter decisions.",
+    },
 ];
 
 export default function ServicesSection() {
@@ -66,10 +72,10 @@ export default function ServicesSection() {
 
                 {/* Description */}
                 <FadeIn delay={0.3}>
-                    <p className="text-muted max-w-2xl font-instrumetal mx-auto mb-12 text-sm md:text-base">
-                        We deliver precise building surveying and mapping services to help
-                        you plan, design, and build with confidence. Powered by modern
-                        technology and field-proven expertise.
+                    <p className="text-muted max-w-2xl mx-auto mb-12 text-sm md:text-base">
+                        At Spectrum, we are surveyors, consultants and project managers, proud of
+                        all we do and ready to support you from one end of the spectrum to the
+                        other.
                     </p>
                 </FadeIn>
 
@@ -108,13 +114,13 @@ export default function ServicesSection() {
                                     </SuisseIntlText>
                                 </div>
 
-                                <button className="w-full bg-primary hover:bg-primary/90 text-black font-semibold py-3 px-4 flex items-center justify-center gap-2 transition-colors">
+                                <Link href={`/services?tab=${index}`} className="w-full bg-primary hover:bg-primary/90 text-black font-semibold py-3 px-4 flex items-center justify-center gap-2 transition-colors">
                                     Read more
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="10" fill="black" />
                                         <path d="M10 8L14 12L10 16" stroke="currentColor" className="text-primary" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
-                                </button>
+                                </Link>
                             </div>
                         </StaggerItem>
                     ))}

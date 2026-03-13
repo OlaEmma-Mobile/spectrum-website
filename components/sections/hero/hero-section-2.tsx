@@ -10,7 +10,7 @@ import React, { ReactNode } from 'react';
 interface HeroSection2Interface {
     image: string,
     heroBottom: string,
-    title: string,
+    title: string | ReactNode,
     body: string,
     description?: ReactNode,
     footer: ReactNode,

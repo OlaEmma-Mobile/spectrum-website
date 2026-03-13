@@ -3,7 +3,6 @@ import { StatsSection } from "@/components/sections/about/stats-section";
 import WhySpectrum from "@/components/sections/about/why-spectrum";
 import ServiceSection from "@/components/sections/service/service-section";
 import { SpectrumHero } from "@/components/sections/spectrum-hero";
-import Image from "next/image";
 
 export default function Home() {
   return (

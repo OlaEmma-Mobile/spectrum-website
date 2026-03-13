@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { SuisseIntlText } from "@/components/fonts";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 
 import { ReactNode } from "react";
 
@@ -60,15 +59,11 @@ export function SurveyHero({ titleLine1, titleHighlight, description }: SurveyHe
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    <Link href="/contact-us">
-                        <Button
-                            className="bg-primary  text-[#0A0A0B] font-medium tracking-wide h-12 px-12 rounded-2xl flex items-center gap-2 group transition-colors shadow-none"
-                        >
-                            <SuisseIntlText weight="medium" className="text-[15px]">
-                                Book a Survey
-                            </SuisseIntlText>
-                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </Button>
+                    <Link href="/contact-us" className="bg-primary text-[#0A0A0B] font-medium tracking-wide h-12 px-12 rounded-2xl inline-flex items-center gap-2 group transition-colors shadow-none">
+                        <SuisseIntlText weight="medium" className="text-[15px]">
+                            Book a Survey
+                        </SuisseIntlText>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </motion.div>
 

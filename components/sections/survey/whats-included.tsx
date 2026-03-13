@@ -23,7 +23,7 @@ export function WhatsIncludedSection({ inclusions }: WhatsIncludedProps) {
                 >
                     <h2 className="text-3xl md:text-5xl lg:text-[56px] font-bold text-white tracking-tight">
                         <SuisseIntlText weight="bold">
-                            What's <span className="text-[#CAE366]">Included?</span>
+                            What&apos;s <span className="text-[#CAE366]">Included?</span>
                         </SuisseIntlText>
                     </h2>
                 </motion.div>

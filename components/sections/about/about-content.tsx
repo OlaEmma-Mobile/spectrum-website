@@ -1,7 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Phone } from "lucide-react"
 import { SuisseIntlText } from "@/components/fonts"
-import { Button } from "@/components/ui/Button"
 import { AiOutlineCaretRight } from "react-icons/ai"
 import { MdPhoneInTalk } from "react-icons/md"
 
@@ -33,14 +31,14 @@ export function AboutContent() {
             {/* Action buttons */}
             <div className="mt-8 flex flex-wrap items-center gap-6">
 
-                <Button className="text-[#070B10] bg-primary px-6 py-3 rounded-[12px] flex gap-2 items-center justify-center">
+                <Link href="/services" className="text-[#070B10] bg-primary px-6 py-3 rounded-[12px] flex gap-2 items-center justify-center">
                     <SuisseIntlText weight="medium" className='font-medium text-black text-sm'>
                         Explore More
                     </SuisseIntlText>
                     <AiOutlineCaretRight className="w-4 h-4 text-black" />
-                </Button>
+                </Link>
 
-                <Link href={'/book-consultation'} className="bg-[#FFFFFF14] px-3.5 py-2.5- rounded-[12px] flex gap-2 items-center justify-center">
+                <Link href={'/contact-us'} className="bg-[#FFFFFF14] px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center">
                     <SuisseIntlText weight="bold" className='text-black font-medium text-sm'>
                         Get in touch
                     </SuisseIntlText>

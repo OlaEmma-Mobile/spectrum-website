@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SuisseIntlText } from "@/components/fonts";
 import { FaUserCircle, FaRegCalendarAlt } from "react-icons/fa";
@@ -67,10 +66,14 @@ export function CaseStudyCard({ item, onClick }: CaseStudyCardProps) {
                     </div>
                 </div>
 
-                <div className="w-full bg-[#CAE366] hover:bg-[#b8d14d] transition-colors text-[#0A0A0B] py-[14px] flex items-center justify-center gap-2 mt-2 group/btn">
+                <button
+                    type="button"
+                    onClick={onClick}
+                    className="w-full bg-[#CAE366] hover:bg-[#b8d14d] transition-colors text-[#0A0A0B] py-[14px] flex items-center justify-center gap-2 mt-2 group/btn"
+                >
                     <SuisseIntlText weight="bold" className="text-sm">Read more</SuisseIntlText>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                </div>
+                </button>
             </div>
         </div>
     );

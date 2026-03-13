@@ -4,9 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { DelightText, SuisseIntlText } from "@/components/fonts";
 import { motion } from "framer-motion";
-import { Home, ShieldCheck, DollarSign } from "lucide-react";
+import { surveysData } from "@/app/home-buyers/[slug]/data";
 
 export function DesignedForHomeBuyersSection() {
+    const levelItems = [
+        {
+            slug: "level-2",
+            icon: "/icons/home.svg",
+            title: "Level 2 (Homebuyer Survey)",
+        },
+        {
+            slug: "level-3",
+            icon: "/icons/home-cog.svg",
+            title: "Level 3 (Building Survey)",
+        },
+    ];
+
     return (
         <section className="relative w-full bg-black py-12 overflow-hidden">
 
@@ -42,59 +55,36 @@ export function DesignedForHomeBuyersSection() {
 
                         <div className="space-y-10">
 
-                            {/* Service Item 1 */}
-                            <div className="flex items-start gap-5 group">
-                                <div className="w-[80px] h-[80px] bg-white rounded-xl flex items-center justify-center ">
-                                    <Image
-                                        src="/icons/home.svg"
-                                        alt="Home"
-                                        width={31}
-                                        height={31}
-                                        className="w-[40px] h-[40px]"
-                                    />
-                                </div>
-                                <div>
-                                    <SuisseIntlText weight="medium" className="md:text-xl text-base font-semibold text-white mb-2">
-                                        Level 2 (Homebuyer Survey)
-                                    </SuisseIntlText>
-                                    <p className="text-[#A1A1AA] text-sm leading-snug mb-2 max-w-sm">
-                                        <SuisseIntlText weight="regular">
-                                            Spot issues early and buy with confidence, ideal for homes in good condition. {" "}
-                                            <Link href="/home-buyers" className="inline-flex items-center text-[#CAE366] text-xs font-semibold tracking-wide uppercase hover:text-white transition-colors group/link">
-                                                Read More
-                                                <span className="ml-1 transition-transform group-hover/link:translate-x-1">▶</span>
-                                            </Link>
-                                        </SuisseIntlText>
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Service Item 2 */}
-                            <div className="flex items-start gap-5 group">
-                                <div className="w-[80px] h-[80px] bg-white rounded-xl flex items-center justify-center ">
-                                    <Image
-                                        src="/icons/home-cog.svg"
-                                        alt="Home"
-                                        width={31}
-                                        height={31}
-                                        className="w-[40px] h-[40px]"
-                                    />
-                                </div>
-                                <div>
-                                    <SuisseIntlText weight="medium" className="md:text-xl text-base font-semibold text-white mb-2">
-                                        Level 3 (Building Survey)
-                                    </SuisseIntlText>
-                                    <p className="text-[#A1A1AA] text-[15px] leading-snug mb-2 max-w-sm">
-                                        <SuisseIntlText weight="regular">
-                                            Deep dive into complex properties, no excuses, just solid facts. {" "}
-                                            <Link href="/home-buyers" className="inline-flex items-center text-[#CAE366] text-xs font-semibold tracking-wide uppercase hover:text-white transition-colors group/link">
-                                                Read More
-                                                <span className="ml-1 transition-transform group-hover/link:translate-x-1">▶</span>
-                                            </Link>
-                                        </SuisseIntlText>
-                                    </p>
-                                </div>
-                            </div>
+                            {levelItems.map((item) => {
+                                const level = surveysData[item.slug];
+                                return (
+                                    <div key={item.slug} className="flex items-start gap-5 group">
+                                        <div className="w-[80px] h-[80px] bg-white rounded-xl flex items-center justify-center ">
+                                            <Image
+                                                src={item.icon}
+                                                alt={item.title}
+                                                width={31}
+                                                height={31}
+                                                className="w-[40px] h-[40px]"
+                                            />
+                                        </div>
+                                        <div>
+                                            <SuisseIntlText weight="medium" className="md:text-xl text-base font-semibold text-white mb-2">
+                                                {item.title}
+                                            </SuisseIntlText>
+                                            <p className="text-[#A1A1AA] text-sm leading-snug mb-2 max-w-sm">
+                                                <SuisseIntlText weight="regular">
+                                                    {level?.hero?.description ?? ""}{" "}
+                                                    <Link href={`/home-buyers/${item.slug}`} className="inline-flex items-center text-[#CAE366] text-xs font-semibold tracking-wide uppercase hover:text-white transition-colors group/link">
+                                                        Read More
+                                                        <span className="ml-1 transition-transform group-hover/link:translate-x-1">▶</span>
+                                                    </Link>
+                                                </SuisseIntlText>
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
 
                         </div>
                     </div>

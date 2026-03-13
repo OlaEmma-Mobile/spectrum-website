@@ -4,8 +4,8 @@ import "./globals.css";
 import { getAllFontVariables } from "./font";
 import { Navbar } from "@/components/sections/navbar";
 import CtaSection from "@/components/sections/foooter/cta-section";
-import FaqSection from "@/components/sections/foooter/faq";
 import { Footer } from "@/components/sections/foooter/footer";
+import { PostContentSections } from "@/components/sections/post-content-sections";
 
 
 const geist = Geist_Mono({ subsets: ["latin"] });
@@ -52,7 +52,7 @@ export default function RootLayout({
 
         <Navbar />
         {children}
-        <FaqSection />
+        <PostContentSections />
         <CtaSection />
         <Footer />
       </body>

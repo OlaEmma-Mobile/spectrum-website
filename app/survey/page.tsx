@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { HeroSection } from "@/components/sections/hero/hero-section";
 import { SurveyFormSection } from "@/components/sections/survey/survey-form-section";
 

@@ -54,6 +54,12 @@ const SERVICES_DATA = [
         description: "When disputes, claims, or insurance matters arise, having accurate and authoritative reporting is essential.",
         image: "/images/pen.jpg",
         href: "/services?tab=7"
+    },
+    {
+        title: "Stock Condition Surveys",
+        description: "Data-driven insight into portfolio condition, compliance status, and lifecycle performance.",
+        image: "/images/worker.jpg",
+        href: "/services?tab=8"
     }
 ];
 

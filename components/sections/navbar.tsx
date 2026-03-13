@@ -4,18 +4,19 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { MdPhoneInTalk } from 'react-icons/md';
 import { AiOutlineCaretRight } from "react-icons/ai";
-import { Button } from "../ui/Button";
 import { SuisseIntlText } from "../fonts";
 import { ServicesDropdown } from "./navigation/services-dropdown";
 import { ChevronDown } from "lucide-react";
 
 
 export function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const pathname = usePathname()
     const [isScrolled, setIsScrolled] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
 
 
@@ -25,18 +26,22 @@ export function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollPosition = window.scrollY
-            console.log({ scrollPosition });
-            setIsScrolled(scrollPosition > 500)
+            setIsScrolled(window.scrollY > 20)
+            if (window.scrollY > 500 && isMenuOpen) {
+                setIsMenuOpen(false)
+            }
         }
 
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
+    }, [isMenuOpen])
+
+    const isHomeBuyers = pathname === '/home-buyers'
+    const isTransparent = isHomeBuyers && !isScrolled
 
     return (
         <>
-            <div className="fixed top-0 left-0 right-0 z-50 md:bg-white bg-[#F1F4F8]">
+            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isTransparent ? 'md:bg-transparent' : 'md:bg-white/90'} bg-[#F1F4F8]`}>
 
                 {/* Main Navbar */}
                 <nav className={`backdrop-blur-md  px-4 md:py-6 py-4 lg:px-8 conatiner mx-auto`}>
@@ -46,7 +51,13 @@ export function Navbar() {
                         <div className="flex items-center-safe space-x-6">
                             {/* Logo */}
                             <Link href={'/'} className="flex items-center">
-                                <Image src={'/images/logo.png'} alt="logo" width={100} height={50} className="object-cover" />
+                                <Image 
+                                    src={isTransparent ? '/images/logo-alt.png' : '/images/logo.png'} 
+                                    alt="logo" 
+                                    width={100} 
+                                    height={50} 
+                                    className="object-cover" 
+                                />
                             </Link>
 
                             {/* Desktop Navigation */}
@@ -61,11 +72,11 @@ export function Navbar() {
                                 ].map(({ name, href }) => (
                                     name === 'Services' ? (
                                         <div key={name} className="relative group/services">
-                                            <Link href={href} className="hover:bg-[#FFFFFF12] text-sm py-1.5 px-3 flex items-center gap-1 rounded-[8px] transition-all duration-300">
-                                                <SuisseIntlText weight="medium" className="text-black text-sm">
+                                            <Link href={href} className={`hover:bg-[#FFFFFF12] text-sm py-1.5 px-3 flex items-center gap-1 rounded-[8px] transition-all duration-300`}>
+                                                <SuisseIntlText weight="medium" className={`${isTransparent ? 'text-white' : 'text-black'} text-sm`}>
                                                     {name}
                                                 </SuisseIntlText>
-                                                <ChevronDown className="w-4 h-4 text-black transition-transform duration-300 group-hover/services:rotate-180" />
+                                                <ChevronDown className={`w-4 h-4 ${isTransparent ? 'text-white' : 'text-black'} transition-transform duration-300 group-hover/services:rotate-180`} />
                                             </Link>
                                             <div className="absolute top-full left-80 -translate-x-1/2 pt-4 opacity-0 invisible group-hover/services:opacity-100 group-hover/services:visible transition-all duration-300">
                                                 <ServicesDropdown />
@@ -73,7 +84,7 @@ export function Navbar() {
                                         </div>
                                     ) : (
                                         <Link key={name} href={href} className="hover:bg-[#FFFFFF12] text-sm py-1.5 px-3 rounded-[8px] transition-all duration-300">
-                                            <SuisseIntlText weight="medium" className="text-black text-sm">
+                                            <SuisseIntlText weight="medium" className={`${isTransparent ? 'text-white' : 'text-black'} text-sm`}>
                                                 {name}
                                             </SuisseIntlText>
                                         </Link>
@@ -84,19 +95,19 @@ export function Navbar() {
 
                         {/* Desktop Get Started Button */}
                         <div className="hidden lg:flex gap-4 items-center">
-                            <Link href={'/book-consultation'} className="bg-[#FFFFFF14] px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center">
-                                <SuisseIntlText weight="bold" className='text-black font-medium text-sm'>
-                                    Schedule a call
+                            <Link href={'/contact-us'} className="bg-[#FFFFFF14] px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center border border-transparent hover:border-white/20 transition-all">
+                                <SuisseIntlText weight="bold" className={`${isTransparent ? 'text-white' : 'text-black'} font-medium text-sm`}>
+                                    Schedule a meeting
                                 </SuisseIntlText>
-                                <MdPhoneInTalk className="w-4 h-4 text-black" />
+                                <MdPhoneInTalk className={`w-4 h-4 ${isTransparent ? 'text-white' : 'text-black'}`} />
                             </Link>
 
-                            <Button className="text-[#070B10] bg-primary px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center">
+                            <Link href="/contact-us" className="text-[#070B10] bg-primary px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center">
                                 <SuisseIntlText weight="medium" className='font-medium text-sm'>
                                     Get in touch
                                 </SuisseIntlText>
                                 <AiOutlineCaretRight className="w-4 h-4 text-[#070B10]" />
-                            </Button>
+                            </Link>
                         </div>
 
                         {/* Mobile Hamburger Menu */}
@@ -183,7 +194,8 @@ export function Navbar() {
                                                     { title: "Party Wall & Neighbouring Matters", href: "/services?tab=4" },
                                                     { title: "Refurbishment & Conservation", href: "/services?tab=5" },
                                                     { title: "Health & Safety / Compliance", href: "/services?tab=6" },
-                                                    { title: "Insurance", href: "/services?tab=7" }
+                                                    { title: "Insurance", href: "/services?tab=7" },
+                                                    { title: "Stock Condition Surveys", href: "/services?tab=8" }
                                                 ].map((service) => (
                                                     <Link
                                                         key={service.title}
@@ -214,21 +226,21 @@ export function Navbar() {
                         {/* Mobile Get Started Button */}
                         <div className="flex flex-col gap-4 w-full items-center">
                             <Link
-                                href={'/book-consultation'}
+                                href={'/contact-us'}
                                 onClick={() => setIsMenuOpen(false)}
                                 className="text-[] bg-[#FFFFFF14] px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center">
                                 <SuisseIntlText weight="bold" className='text-black font-medium text-sm'>
-                                    Schedule a call
+                                    Schedule a meeting
                                 </SuisseIntlText>
                                 <MdPhoneInTalk className="w-4 h-4 text-black" />
                             </Link>
 
-                            <Button className="w-full text-[#070B10] bg-primary px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center">
+                            <Link href="/contact-us" onClick={() => setIsMenuOpen(false)} className="w-full text-[#070B10] bg-primary px-3.5 py-2.5 rounded-[12px] flex gap-2 items-center justify-center">
                                 <SuisseIntlText weight="medium" className='text-black font-medium text-sm'>
                                     Get in touch
                                 </SuisseIntlText>
                                 <AiOutlineCaretRight className="w-4 h-4 text-[#070B10]" />
-                            </Button>
+                            </Link>
                         </div>
 
                     </div>
