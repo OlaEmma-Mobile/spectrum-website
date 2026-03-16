@@ -293,7 +293,7 @@ export function Footer() {
           </div>
         </FadeIn>
       </div>
-      <div className="w-full h-[350px] flex flex-col items-center justify-center">
+      <div className="w-full relative md:h-[300px] h-[200px] flex flex-col items-center justify-center">
         <Image
           src={"/images/fotter-image.png"}
           alt="logo"
@@ -303,11 +303,16 @@ export function Footer() {
         />
         <DelightText
           weight="black"
-          className="bg-linear-to-b from-[#1F1F1F]/10 to-transparent bg-clip-text text-transparent text-7xl font-black select-none md:scale-[300%] scale-[150%] pointer-events-none"
+          className="bg-linear-to-b from-[#1F1F1F]/10 to-transparent bg-clip-text text-transparent text-5xl md:text-7xl font-black select-none md:scale-[300%] scale-[150%] pointer-events-none"
         >
           SPECTRUM
         </DelightText>
       </div>
+
+      <p className="text-black text-center text-sm">
+        © {new Date().getFullYear()} Spectrum Property Services. All rights
+        reserved.
+      </p>
     </footer>
   );
 }

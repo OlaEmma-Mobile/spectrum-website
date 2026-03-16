@@ -6,7 +6,7 @@ import { MdPhoneInTalk } from "react-icons/md"
 export function AboutContent() {
     return (
         <div className="flex flex-col justify-center">
-            <div className="space-y-6 text-sm md:text-lg leading-relaxed text-[#94969E]">
+            <div className="space-y-6 text-sm md:text-lg text-[#94969E]">
                 <p className="font-instrumetal font-medium tracking-tighter">
                     At Spectrum, we are surveyors, consultants and project managers, proud of
                     all we do and ready to support you from one end of the spectrum to the

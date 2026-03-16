@@ -22,7 +22,7 @@ export function AboutSection() {
             Trusted Experts in{" "}
             <span className="text-primary">Building Surveying</span>
           </DelightText>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
+          <p className="mt-5 max-w-2xl text-sm md:text-lg leading-relaxed text-[#94969E]">
             At Spectrum, we are surveyors, consultants and project managers,
             proud of all we do and ready to support you from one end of the
             spectrum to the other.

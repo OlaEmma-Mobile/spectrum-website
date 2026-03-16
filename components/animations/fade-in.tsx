@@ -55,9 +55,10 @@ export function StaggerContainer({ children, className, delay = 0 }: { children:
     );
 }
 
-export function StaggerItem({ children, className }: { children: ReactNode, className?: string }) {
+export function StaggerItem({ children, className, ...props }: { children: ReactNode, className?: string } & React.ComponentPropsWithoutRef<typeof motion.div>) {
     return (
         <motion.div
+            {...props}
             variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: {
